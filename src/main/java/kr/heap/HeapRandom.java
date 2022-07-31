@@ -1,5 +1,6 @@
 package kr.heap;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class HeapRandom {
@@ -13,5 +14,69 @@ public class HeapRandom {
 
         int [] arr = new int[N];
 
+        for (int i = 0; i < N; i++) {
+            // 0 ~ 99
+            arr[i] = random.nextInt(100);
+
+        }
+        System.out.println("정렬 하기 전"+ Arrays.toString(arr));
+
+
+        heapSort(arr);
+        System.out.println("정렬 후" + Arrays.toString(arr));
+
     }
-}
+
+    public static void heapSort(int[] arr) {
+        int n = arr.length;
+
+        // 제일 큰 힙을 구성한다
+        // 부모노드 인덱스는 자식노드인덱스 / 2
+        // 왼쪽 자식노드 인덱스는 부모노드인덱스 *2 +1
+        // 오른쪽 자식노드 인덱스는 부모노드인덱스 *2 +2
+        for (int i = n / 2 - 1; i >= 0; i--) {
+            heapify(arr, n, i); // 일반 배열을 힙으로 구성
+        }
+
+        for (int i = n - 1; i > 0; i--) {
+            swap(arr, 0, i);
+            heapify(arr, i, 0); // 요소를 제거한 뒤 다시 최대힙을 구성
+        }
+    }
+
+    // 배열을 heap 자료구조로 만듬
+        private static void heapify(int[] arr, int n, int i) {
+
+            int p = i;
+            int l = i * 2 + 1;
+            int r = i * 2 + 2;
+
+            // 왼쪽 자식노드
+            if (l < n && arr[p] < arr[l])
+                p = l;
+            // 오른쪽 자식노드
+            if (r < n && arr[p] < arr[r])
+                p = r;
+
+            // 부모노드 < 자식노드
+            if (i != p) {
+                swap(arr, p, i);
+                heapify(arr, n, p);
+            }
+        }
+
+
+       // 노드 위치 변경
+        private static void swap(int[] arr, int a, int b) {
+            int temp = arr[a];
+            arr[a] = arr[b];
+            arr[b] = temp;
+        }
+    }
+
+
+
+
+
+
+
