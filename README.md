@@ -99,3 +99,9 @@
 
 <img src="https://velog.velcdn.com/images/shkim1199/post/b1c4d9c1-c82f-408f-92a2-559e82097332/image.png" style="zoom:50%;" />
 
+
+힙 장점
+제자리 정렬 알고리즘 (정렬에 사용되는 추가적인 저장공간이 매우 작음)
+
+단점
+불안정적인 정렬 (같은 값일 때 순서가 변할 수 있음)
