@@ -28,12 +28,10 @@ public class HeapRandom {
     }
 
     public static void heapSort(int[] arr) {
+
         int n = arr.length;
 
         // 제일 큰 힙을 구성한다
-        // 부모노드 인덱스는 자식노드인덱스 / 2
-        // 왼쪽 자식노드 인덱스는 부모노드인덱스 *2 +1
-        // 오른쪽 자식노드 인덱스는 부모노드인덱스 *2 +2
         for (int i = n / 2 - 1; i >= 0; i--) {
             heapify(arr, n, i); // 일반 배열을 힙으로 구성
         }
@@ -47,21 +45,21 @@ public class HeapRandom {
     // 배열을 heap 자료구조로 만듬
         private static void heapify(int[] arr, int n, int i) {
 
-            int p = i;
-            int l = i * 2 + 1;
-            int r = i * 2 + 2;
+            int parent = i;
+            int left = i * 2 + 1;
+            int right = i * 2 + 2;
 
             // 왼쪽 자식노드
-            if (l < n && arr[p] < arr[l])
-                p = l;
+            if (left < n && arr[parent] < arr[left])
+                parent = left;
             // 오른쪽 자식노드
-            if (r < n && arr[p] < arr[r])
-                p = r;
+            if (right < n && arr[parent] < arr[right])
+                parent = right;
 
             // 부모노드 < 자식노드
-            if (i != p) {
-                swap(arr, p, i);
-                heapify(arr, n, p);
+            if (i != parent) {
+                swap(arr, parent, i);
+                heapify(arr, n, parent);
             }
         }
 
